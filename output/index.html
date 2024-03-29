@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Apport</title>
+  <script src="apport.js" defer></script>
+</head>
+<body>
+
+<h1>Apport</h1>
+
+<div ap-get="content.html" ap-on="mount"></div>
+
+<form ap-post>
+  name: <input name="name" required><br>
+  age: <input type="number" name="age"><br>
+  <label>agree: <input type="checkbox" ap-post ap-data="agree" ap-validate></label><br>
+  <input type="file" name="file1" /><br/>
+  <button>Send</button>
+</form>
+
+</body>
+</html>
