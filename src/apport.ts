@@ -15,18 +15,17 @@ type ApportOptions={
 
 // tp=get/post/postback, cmd=cmd/url
 async function Apport(fo:ApportOptions) {
-  function ThrowThis(evtDet:any,err:Error) {
-    evtDet.error=err;
-    document.dispatchEvent(new CustomEvent("ap-error",{detail:evtDet}));
+  function ThrowThis(evtDet:ApportOptions,err:Error) {
+    document.dispatchEvent(new CustomEvent("ap-error",{detail:{error:err,...evtDet}}));
     throw err;
   }
   
-  let evtDet:any={...fo};
+  let evtDet:ApportOptions={...fo};
   if(!fo.method) fo.method="GET";
   if(!fo.url) fo.url=window.location.href;
 
   let postBody:FormData|URLSearchParams;
-  if(fo.method!=="GET") {
+  if(fo.method=="POST"||fo.method=="PUT") {
     if(fo.form && fo.form!=="none") {
       if(typeof fo.form=="string") fo.form=<HTMLFormElement>document.querySelector(fo.form);
       if(fo.validate && !fo.form.reportValidity()) return;
@@ -54,7 +53,7 @@ async function Apport(fo:ApportOptions) {
   if(fo.data!==undefined) fo2.headers["AP-Data"]=encodeURI(JSON.stringify(fo.data));
   if(fo.trigger) fo2.headers["AP-Trigger"]=encodeURI(fo.trigger);
   if(fo.triggerName) fo2.headers["AP-Trigger-Name"]=encodeURI(fo.triggerName);
-  if(fo.method!=="GET") fo2.body=postBody;
+  if(fo.method=="POST"||fo.method=="PUT") fo2.body=postBody;
 
   let r;
   try {
@@ -196,7 +195,7 @@ function HookUpElem(el:HTMLElement,tp:string) {
     rv.trigger=el.id ?? undefined;
     rv.triggerName=el.getAttribute("name") ?? undefined;
     // form
-    if(tp!="GET") rv.form=el.closest("form") ?? undefined;
+    if(tp=="POST"||tp=="PUT") rv.form=el.closest("form") ?? undefined;
     return rv; 
   }
 

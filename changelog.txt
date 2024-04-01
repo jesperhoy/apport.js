@@ -1,3 +1,7 @@
+v. 1.0.1 - 2024-04-01
+---------------------
+Fix: Form data sent with DELETE request.
+
 v. 1.0.0 - 2024-03-29
 ---------------------
 First release
