@@ -178,7 +178,11 @@ function HookUpElem(el:HTMLElement,tp:string) {
     // -- ap-swap --
     rv.swap=<Swap>el.getAttribute("ap-swap") ?? undefined;
     // -- ap-validate --
-    rv.validate=el.hasAttribute("ap-validate");
+    if(el.hasAttribute("ap-validate")) {
+      rv.validate=el.getAttribute("ap-validate")!=="false";
+    } else {
+      rv.validate=el.tagName.toLowerCase()==="form";
+    }
     // -- ap-target --
     rv.target= el.getAttribute("ap-target") ?? el;
     // -- ap-data --
@@ -195,7 +199,7 @@ function HookUpElem(el:HTMLElement,tp:string) {
     rv.trigger=el.id ?? undefined;
     rv.triggerName=el.getAttribute("name") ?? undefined;
     // form
-    if(tp=="POST"||tp=="PUT") rv.form=el.closest("form") ?? undefined;
+    if(tp=="post"||tp=="put") rv.form=el.closest("form") ?? undefined;
     return rv; 
   }
 

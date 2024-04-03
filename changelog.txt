@@ -1,3 +1,8 @@
+v. 1.0.2 - 2024-04-03
+---------------------
+Update: "ap-validate" attribute now defaults to "true" on <form> elements (otherwise still defaults to "false").
+Fix: ap-post / ap-put did not capture enclosing form.
+
 v. 1.0.1 - 2024-04-01
 ---------------------
 Fix: Form data sent with DELETE request.

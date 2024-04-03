@@ -3,11 +3,11 @@
 ## HTML element attribute "directives"
 
 - `ap-get` / `ap-post` / `ap-put` / `ap-delete` - Send a GET/POST/PUT/DELETE request to the server and swap the returned HTML into the page. The attribute value (if present) is the URL to get/post to (defaults to current URL). 
-- `ap-on` - Optional. The event that triggers the fetch request. Defaults to `change` for input, textarea and select elements, `submit` for form elements, and `click` for all other element types. Can also be `mount`to do the request as soon as the element is loaded.
-- `ap-swap` - Optional. How to swap returned HTML into target element. See "swap values" below. Defaults to "inner".
-- `ap-validate` - Optional. if present - enclosing form will first be validated.
-- `ap-target` - Optional. query selector for target element (defaults to current element).
-- `ap-data` - Optional. Value is evaluated as JavaScript and then included in request "AP-Data" header (JSON.stringify'd + URL encoded).
+- `ap-on` - The event that triggers the fetch request. Defaults to `change` for input, textarea and select elements, `submit` for form elements, and `click` for all other element types. Can also be `mount`to do the request as soon as the element is loaded. (optional)
+- `ap-swap` - How to swap returned HTML into target element. See "swap values" below. Defaults to "inner". (optional)
+- `ap-validate` - Override form validation for `ap-post` / `ap-put` by setting this to `"true"` (or empty) or `"false"`. The default is "true" on `<form>` elements - and "false" on other elements. (optional)
+- `ap-target` - Query selector for target element (defaults to current element).  (optional)
+- `ap-data` - Value is evaluated as JavaScript and then included in request "AP-Data" header (JSON.stringify'd + URL encoded).  (optional)
 
 
 ## Request-headers
