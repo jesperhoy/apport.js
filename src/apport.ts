@@ -190,7 +190,7 @@ function HookUpElem(el:HTMLElement,tp:string) {
     if(dataJS) {
       let f=new Function("return " + dataJS);
       try {
-        rv.data=f();
+        rv.data=f.call(el);
       } catch(err) {
         throw new Error("Error evaluating ap-data attribute value (\"" + dataJS + "\") on " + el.tagName + " element " + (el.id ? "#" + el.id :""),{cause:err});
       }
