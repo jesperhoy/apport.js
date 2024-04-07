@@ -218,13 +218,30 @@ function HookUpElem(el:HTMLElement,tp:string) {
   }
 }
 
+function HookUpTrimValidity(el:HTMLInputElement) {
+  let HasTrim=el.hasAttribute("ap-trim");
+  let HasValidity=el.hasAttribute("ap-validity");
+  if(!HasTrim && !HasValidity) return;
+  if(HasTrim) el.value=el.value.trim();
+  let vf:()=>string;
+  if(HasValidity) {
+    vf=<()=>string>new Function("return " + el.getAttribute("ap-validity"));
+    el.setCustomValidity(vf.call(el));
+  }
+  el.addEventListener("change",e=>{
+    if(HasTrim) el.value=el.value.trim();
+    if(HasValidity) el.setCustomValidity(vf.call(el));
+  });
+}
+
 let Elems=new Set<Element>();
 function ScanDom() {
-  let lst=document.querySelectorAll("[ap-get],[ap-post],[ap-put],[ap-delete]");
+  let lst=document.querySelectorAll("[ap-get],[ap-post],[ap-put],[ap-delete],[ap-trim],[ap-validity]");
   let NewElems=new Set<Element>();
   for(const el of lst) { 
     NewElems.add(el);
     if(Elems.has(el)) continue;
+    HookUpTrimValidity(<HTMLInputElement>el);
     for(const tp of ["get","post","put","delete"]) {
       if(el.hasAttribute("ap-"+tp)) HookUpElem(<HTMLElement>el,tp);
     }

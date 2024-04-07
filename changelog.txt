@@ -1,3 +1,7 @@
+v. 1.1.0 - 2024-04-07
+---------------------
+Added: "ap-trim" and "ap-validity"
+
 v. 1.0.3 - 2024-04-06
 ---------------------
 Update: JavaScript code in "ap-data" attribute can now use "this" to refer to the element. 

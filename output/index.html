@@ -12,7 +12,7 @@
 <div ap-get="content.html" ap-on="mount"></div>
 
 <form ap-post>
-  name: <input name="name" required><br>
+  name: <input name="name" ap-trim ap-validity="this.value=='kurt' ? '':'Not kurt'" required><br>
   age: <input type="number" name="age"><br>
   <label>agree: <input type="checkbox" ap-post ap-data="agree" ap-validate></label><br>
   <input type="file" name="file1" /><br/>

@@ -8,7 +8,8 @@
 - `ap-validate` - Override form validation for `ap-post` / `ap-put` by setting this to `"true"` (or empty) or `"false"`. The default is "true" on `<form>` elements - and "false" on other elements. (optional)
 - `ap-target` - Query selector for target element (defaults to current element).  (optional)
 - `ap-data` - Value is evaluated as JavaScript and then included in request "AP-Data" header (JSON.stringify'd + URL encoded).  (optional)
-
+- `ap-trim` - for input/textarea elements - value is automatically trimmed on load and after change (optional).
+- `ap-validity` - for input/textarea elements - sets custom validity to result of evaluating value as JavaScript on load and after change (optional).
 
 ## Request-headers
 
