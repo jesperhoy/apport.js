@@ -196,7 +196,7 @@ function HookUpElem(el:HTMLElement,tp:string) {
       }
     }
 
-    rv.trigger=el.id ?? undefined;
+    rv.trigger=el.getAttribute("id") ?? undefined; //don't use el.id - might get sub-element with that ID...
     rv.triggerName=el.getAttribute("name") ?? undefined;
     // form
     if(tp=="post"||tp=="put") rv.form=el.closest("form") ?? undefined;

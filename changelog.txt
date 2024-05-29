@@ -1,3 +1,7 @@
+v. 1.1.2 - 2024-05-29
+---------------------
+Fix: ap-trigger header might not contain element's ID, but rather a sub-element with name of 'id'
+
 v. 1.1.1 - 2024-04-08
 ---------------------
 Optimized DOM scanning
